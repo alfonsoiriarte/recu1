@@ -94,7 +94,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 	//Valido legajo
 	int legajoExistente = 0;
 	for(int i=0;i<lenCensistas;i++){
-		if(viviendaACargar.legajoCensista == censistas[i].legajoCensista){
+		if(viviendaACargar.legajoCensista == (censistas+i)->legajoCensista){
 			legajoExistente=1;
 		}
 	}
@@ -103,7 +103,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 		fflush(stdin);
 		scanf("%d", &viviendaACargar.legajoCensista);
 		for(int i=0;i<lenCensistas;i++){
-			if(viviendaACargar.legajoCensista == censistas[i].legajoCensista){
+			if(viviendaACargar.legajoCensista == (censistas+i)->legajoCensista){
 				legajoExistente=1;
 			}
 		}
@@ -114,7 +114,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 	//Valido legajo
 	int catastroExistente = 0;
 	for(int i=0;i<lenCatastros;i++){
-		if(viviendaACargar.idCatastro == catastros[i].idCatastro){
+		if(viviendaACargar.idCatastro == (catastros+i)->idCatastro){
 			catastroExistente=1;
 		}
 	}
@@ -123,7 +123,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 		fflush(stdin);
 		scanf("%d", &viviendaACargar.idCatastro);
 		for(int i=0;i<lenCatastros;i++){
-			if(viviendaACargar.idCatastro == catastros[i].idCatastro){
+			if(viviendaACargar.idCatastro == (catastros+i)->idCatastro){
 				catastroExistente=1;
 			}
 		}
@@ -131,8 +131,8 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 
 
 	for(int i=0;i<len;i++){
-		if(list[i].isEmpty == 1){
-			viviendaACargar.idVivienda = list[i-1].idVivienda + 1;
+		if((list+i)->isEmpty == 1){
+			viviendaACargar.idVivienda = (list+i-1)->idVivienda + 1;
 			if(i==0){
 				viviendaACargar.idVivienda = 20000;
 			}
@@ -401,7 +401,7 @@ void menu(Vivienda* list, int len, Censista* censistas, int lenCensistas, int op
 				printf("\n\nIngrese el id de la vivienda que quiera eliminar");
 				scanf("%d", &idAModificar);
 				for(int i=0;i<len;i++){
-					if(list[i].idVivienda == idAModificar){
+					if((list+i)->idVivienda == idAModificar){
 						flagIdValido = 1;
 					}
 				}
@@ -410,7 +410,7 @@ void menu(Vivienda* list, int len, Censista* censistas, int lenCensistas, int op
 					printf("\nIngrese el id de la vivienda que quiera eliminar");
 					scanf("%d", &idAModificar);
 					for(int i=0;i<len;i++){
-						if(list[i].idVivienda == idAModificar){
+						if((list+i)->idVivienda == idAModificar){
 							flagIdValido = 1;
 						}
 					}

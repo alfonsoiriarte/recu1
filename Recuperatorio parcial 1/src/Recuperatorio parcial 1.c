@@ -22,7 +22,6 @@ int main(void) {
 
 	Censista censistas[3] = {{100, "Ana", 34, "1203-2345"}, {101, "Juan", 24, "4301-5467"}, {102, "Sol", 47, "5902-3748"}};
 	Catastro catastros[5] = {{1000, "Avellaneda", 28, 1540}, {1001, "Lanus", 43, 1789}, {1002, "Quilmes", 32, 1624}, {1003, "La Plata", 67, 1677}, {1004, "Lomas de Zamora", 32, 1923}};
-
 	Vivienda viviendas[LENGTH];
 
 	int flagPrograma = 1;
@@ -33,7 +32,6 @@ int main(void) {
 	initEmpty(viviendas, LENGTH);
 
 	while(flagPrograma == 1){
-
 		ingresarOpcion(&opcion);
 		menu(viviendas, LENGTH, censistas, 3, opcion, &flagOpcion, &flagPrograma, catastros, 5);
 	}

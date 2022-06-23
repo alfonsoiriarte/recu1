@@ -62,13 +62,13 @@ int printViviendas(Vivienda* list, int length, Catastro* catastros, int lenCatas
 	printf("\n\n------------------Viviendas------------------ ");
 
 	for(int i=0;i<length;i++){
-		if(list[i].isEmpty == 0){
+		if((list+i)->isEmpty == 0){
 			printf("\n\nVivienda N°%d", i);
-			printf("\nID: %d", list[i].idVivienda);
-			printf("\nCalle: %s", list[i].calle);
-			printf("\nCantidad de personas: %d", list[i].cantidadPersonas);
-			printf("\nCantidad de habitaciones: %d", list[i].cantidadHabitaciones);
-			switch(list[i].tipoVivienda){
+			printf("\nID: %d", (list+i)->idVivienda);
+			printf("\nCalle: %s", (list+i)->calle);
+			printf("\nCantidad de personas: %d", (list+i)->cantidadPersonas);
+			printf("\nCantidad de habitaciones: %d", (list+i)->cantidadHabitaciones);
+			switch((list+i)->tipoVivienda){
 				case 1:
 					printf("\nTipo de vivienda: Casa");
 					break;
@@ -82,8 +82,8 @@ int printViviendas(Vivienda* list, int length, Catastro* catastros, int lenCatas
 					printf("\nTipo de vivienda: Rancho");
 					break;
 			}
-			printf("\nLegajo: %d", list[i].legajoCensista);
-			printf("\nCatastro: %d", list[i].idCatastro);
+			printf("\nLegajo: %d", (list+i)->legajoCensista);
+			printf("\nCatastro: %d", (list+i)->idCatastro);
 			for(int j=0;j<lenCatastros;j++){
 				if((catastros+j)->idCatastro == (list+i)->idCatastro){
 					printf("\nLocalidad: %s", (catastros+j)->localidad);
