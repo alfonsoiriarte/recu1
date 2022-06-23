@@ -10,7 +10,7 @@
 #include <string.h>
 #include "Censista.h"
 
-void printCensistas(Censista* list, int length){
+void printCensistas(Censista* list, int length){ //Listo censistas
 	printf("\n\n\n--------------------LISTA DE CENSISTAS--------------------");
 	for(int i=0;i<length;i++){
 		printf("\n\n--Censista N°%d", i);

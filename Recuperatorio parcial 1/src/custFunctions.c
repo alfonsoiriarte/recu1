@@ -12,7 +12,7 @@
 #include "Censista.h"
 #include "Catastro.h"
 
-void ingresarOpcion(int *opcion){
+void ingresarOpcion(int *opcion){ //Muestro menu y pido ingreso de opcion numerica
 	printf("\n\n----------------------------------------------Menu----------------------------------------------");
 	printf("\n\n1. Alta vivienda \n2. Modificar vivienda \n3. Baja vivienda\n4. Listar viviendas.\n5. Listar censistas.\n6. Listar viviendas por tipo de vivienda.\n7. Listar viviendas por localidad \n8. Cantidad de viviendas censadas en Avellaneda. \n9. Listar viviendas por censista. \n11. Cantidad de departamentos censados en Lanús. \n12. Listar Catastro ordenado por localidad \nIngrese el numero de la opcion correspondiente:");
 	fflush(stdin);
@@ -34,7 +34,7 @@ int viviendaVacia(Vivienda *vivienda, int len){ //retorna posicion de la viviend
 	return -1;
 }
 
-void modificarVivienda(Vivienda* list, int len, int id){
+void modificarVivienda(Vivienda* list, int len, int id){ //Pido seleccion de dato a modificar y pido reingreso del dato
 	int opcion;
 	printf("\n\n1. Modificar calle \n2. Modificar cantidad de personas \n3. Modificar cantidad de habitaciones \n4. Modificar tipo de vivienda\nIngrese el numero de la opcion correspondiente:");
 	fflush(stdin);
@@ -74,7 +74,7 @@ void modificarVivienda(Vivienda* list, int len, int id){
 	}
 }
 
-void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){
+void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){ //Pido datos de vivienda, valido legajo, catastro y seteo id
 	Vivienda viviendaACargar;
 
 	printf("\nIngrese calle: ");
@@ -91,7 +91,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 	printf("\nIngrese legajo censista (debe existir): ");
 	fflush(stdin);
 	scanf("%d", &viviendaACargar.legajoCensista);
-	//Valido legajo
+																					//Valido legajo
 	int legajoExistente = 0;
 	for(int i=0;i<lenCensistas;i++){
 		if(viviendaACargar.legajoCensista == (censistas+i)->legajoCensista){
@@ -111,7 +111,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 
 	printf("Ingrese el id del catastro (debe existir): ");
 	scanf("%d", &viviendaACargar.idCatastro);
-	//Valido legajo
+																					//Valido catastro
 	int catastroExistente = 0;
 	for(int i=0;i<lenCatastros;i++){
 		if(viviendaACargar.idCatastro == (catastros+i)->idCatastro){
@@ -128,8 +128,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 			}
 		}
 	}
-
-
+																					//Seteo id de vivienda
 	for(int i=0;i<len;i++){
 		if((list+i)->isEmpty == 1){
 			viviendaACargar.idVivienda = (list+i-1)->idVivienda + 1;
@@ -143,7 +142,7 @@ void cargarVivienda(Vivienda* list, int len, Censista* censistas, int lenCensist
 	addVivienda(list, len, viviendaACargar.idVivienda, viviendaACargar.calle, viviendaACargar.cantidadPersonas, viviendaACargar.cantidadHabitaciones, viviendaACargar.tipoVivienda, viviendaACargar.legajoCensista,  viviendaACargar.idCatastro);
 }
 
-void showViviendasTipo(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){
+void showViviendasTipo(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){ //Listo viviendas por tipo
 	int auxTipo = 0;
 	printf("Ingrese el tipo de vivienda (1.CASA – 2.DEPARTAMENTO – 3.CASILLA - 4.RANCHO): ");
 	scanf("%d", &auxTipo);
@@ -194,7 +193,7 @@ void showViviendasTipo(Vivienda* list, int len, Censista* censistas, int lenCens
 	printf("\n\n------------------------------------------------------------------");
 }
 
-void showViviendasLocalidad(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){
+void showViviendasLocalidad(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){ //Listo viviendas por localidad
 	char auxTipo[16];
 	printf("Ingrese la localidad (Avellaneda, Lanus, Quilmes, La Plata, Lomas de Zamora): ");
 	scanf("%s", auxTipo);
@@ -240,7 +239,7 @@ void showViviendasLocalidad(Vivienda* list, int len, Censista* censistas, int le
 	printf("\n\n------------------------------------------------------------------");
 }
 
-void cantAvellaneda(Vivienda* list, int len, Catastro* catastros, int lenCatastros){
+void cantAvellaneda(Vivienda* list, int len, Catastro* catastros, int lenCatastros){ //Informo la cantidad de viviendas en avellaneda
 
 	char auxTipo[10] = "Avellaneda";
 	int count = 0;
@@ -255,7 +254,7 @@ void cantAvellaneda(Vivienda* list, int len, Catastro* catastros, int lenCatastr
 
 }
 
-void viviendasPorCensista(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){
+void viviendasPorCensista(Vivienda* list, int len, Censista* censistas, int lenCensistas, Catastro* catastros, int lenCatastros){ //Listo las viviendas por nombre de censista
 	char auxCensista[51];
 	int salirFlag = 0;
 	printf("\n\nCensistas: \n");
@@ -323,7 +322,7 @@ void viviendasPorCensista(Vivienda* list, int len, Censista* censistas, int lenC
 		printf("\n\n------------------------------------------------------------------");
 }
 
-void cantViviendasCasa(Vivienda* list, int len, Catastro* catastros, int lenCatastros){
+void cantViviendasCasa(Vivienda* list, int len, Catastro* catastros, int lenCatastros){ //Informo la cantidad de viviendas tipo casa
 	int count = 0;
 	for(int i=0;i<len;i++){
 		if((list+i)->tipoVivienda == 1 && (list+i)->isEmpty == 0){
@@ -333,7 +332,7 @@ void cantViviendasCasa(Vivienda* list, int len, Catastro* catastros, int lenCata
 	printf("Cantidad de viviendas tipo casa: %d", count);
 }
 
-void cantViviendasDepartamentoLanus(Vivienda* list, int len, Catastro* catastros, int lenCatastros){
+void cantViviendasDepartamentoLanus(Vivienda* list, int len, Catastro* catastros, int lenCatastros){ // Informo cantidad de viviendas tipo departamento en lanus
 	int count = 0;
 	for(int i=0;i<len;i++){
 		if((list+i)->tipoVivienda == 2 && (list+i)->isEmpty == 0){
@@ -347,7 +346,7 @@ void cantViviendasDepartamentoLanus(Vivienda* list, int len, Catastro* catastros
 	printf("Cantidad de departamentos censados en Lanus: %d", count);
 }
 
-void listarCatastros(Catastro* catastros, int lenCatastros){
+void listarCatastros(Catastro* catastros, int lenCatastros){ //Listo catastros
 	printf("\n\n--------------------Catastros por localidad--------------------");
 	for(int i=0;i<lenCatastros;i++){
 		printf("\nId de catastro: %d", (catastros+i)->idCatastro);
@@ -358,7 +357,7 @@ void listarCatastros(Catastro* catastros, int lenCatastros){
 	printf("\n\n---------------------------------------------------------------\n");
 }
 
-void menu(Vivienda* list, int len, Censista* censistas, int lenCensistas, int opcion,int *flagOpcion, int *flagPrograma, Catastro* catastros, int lenCatastros){
+void menu(Vivienda* list, int len, Censista* censistas, int lenCensistas, int opcion,int *flagOpcion, int *flagPrograma, Catastro* catastros, int lenCatastros){ //Menu del programa con llamadas a las funciones correspondientes
 
 	int idAModificar = 0;
 	int flagIdValido = 0;

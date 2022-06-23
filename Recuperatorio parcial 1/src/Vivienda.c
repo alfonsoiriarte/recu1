@@ -14,7 +14,7 @@
 
 
 
-int addVivienda(Vivienda* list, int len, int id, char calle[], int cantidadPersonas, int cantidadHabitaciones, int tipoVivienda, int legajoCensista, int idCatastro){
+int addVivienda(Vivienda* list, int len, int id, char calle[], int cantidadPersonas, int cantidadHabitaciones, int tipoVivienda, int legajoCensista, int idCatastro){ //Añado la vivienda al array de viviendas
 
 	for(int i=0;i<len;i++){
 		if(list[i].isEmpty == 1){
@@ -34,7 +34,7 @@ int addVivienda(Vivienda* list, int len, int id, char calle[], int cantidadPerso
 	return 0;
 }
 
-int findViviendaById(Vivienda* list, int len,int id){
+int findViviendaById(Vivienda* list, int len,int id){ //Busco vivienda por id y retorno su posicion
 	for(int i=0;i<len;i++){
 		if(list[i].idVivienda == id){
 			return i;
@@ -43,7 +43,7 @@ int findViviendaById(Vivienda* list, int len,int id){
 	return -1;
 }
 
-int removeVivienda(Vivienda* viviendas, int len, int id){
+int removeVivienda(Vivienda* viviendas, int len, int id){ //Busco vivienda por id y la "elimino" modificando los campos
 	int pos = findViviendaById(viviendas, len, id);
 
 	(viviendas+pos)->idVivienda = id;
@@ -58,7 +58,7 @@ int removeVivienda(Vivienda* viviendas, int len, int id){
 	return 0;
 }
 
-int printViviendas(Vivienda* list, int length, Catastro* catastros, int lenCatastros){
+int printViviendas(Vivienda* list, int length, Catastro* catastros, int lenCatastros){ //Listo las viviendas
 	printf("\n\n------------------Viviendas------------------ ");
 
 	for(int i=0;i<length;i++){
@@ -96,7 +96,7 @@ int printViviendas(Vivienda* list, int length, Catastro* catastros, int lenCatas
 	return 0;
 }
 
-void initEmpty(Vivienda* list, int length){
+void initEmpty(Vivienda* list, int length){ //Inicializo campo empty
 	for(int i=0;i<length;i++){
 		(list+i)->isEmpty = 1;
 	}
